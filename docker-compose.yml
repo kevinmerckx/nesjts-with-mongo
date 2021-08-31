@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  api:
+    image: node:14
+    volumes:
+      - .:/app
+    ports:
+      - 3333:3333
+      - 9229:9229
+    depends_on:
+      - mongo
+    environment:
+      NODE_ENV: development
+  mongo:
+    image: mongo:4.4.8
+    volumes:
+      - ./.docker/mongodb/data/db/:/data/db/
+      - ./.docker/mongodb/data/log/:/var/log/mongodb/
